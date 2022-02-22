@@ -1,0 +1,362 @@
+---
+layout: default
+---
+{% assign developer = site.data.developer[page.developer] %}
+{% assign icon = page.icon | default: "fas fa-question" %}
+{% capture options %}<a href="{% link _pages/store.html %}" class="btn btn-option">Back to {{ site.data.trans[page.lang].store }} <i class="fas fa-arrow-circle-right"></i></a>{% endcapture %}
+{% assign buyLink = '#' %}
+{% assign isPaidOwnerPlugin = false %}
+{% if page.download %}
+	{% assign buyLink = page.download %}
+{% elsif page.email %}
+	{% assign buyLink = 'mailto:' | append: page.email %}
+{% elsif page.github %}
+	{% assign buyLink = page.github %}
+{% endif %}
+{%- if page.gumroad %}
+    {% if page.developer == 'keleo' or page.developer == 'kevinpapst' %}
+	    {% assign isPaidOwnerPlugin = true %}
+    {% endif %}
+{% endif %}
+
+{% comment %}
+<script src="https://gumroad.com/js/gumroad.js"></script>
+{% endcomment %}
+
+<div class="container store-item">
+
+	{% include page-title.html title=page.name options=options %}
+
+	<div class="row row-cards">
+		<div class="col-lg-3">
+			<div class="row">
+				<div class="col-md-6 col-lg-12">
+					<div class="card p-3">
+						<div class="d-flex align-items-center">
+							{% if page.gumroad %}
+							<a href="https://gum.co/{{ page.gumroad }}" onclick="location.href='https://gum.co/{{ page.gumroad }}';return false;">
+								<span class="stamp stamp-md bg-blue mr-3">
+								  <i class="fas fa-euro-sign"></i>
+								</span>
+							</a>
+							{% else %}
+								<span class="stamp stamp-md bg-blue mr-3">
+									{% if page.price == nil %}
+									<i class="fas fa-comments"></i>
+									{% elsif page.price == '0' %}
+									<i class="fas fa-gift"></i>
+									{% else %}
+									<i class="fas fa-shopping-cart"></i>
+									{% endif %}
+								</span>
+							{% endif %}
+							<div>
+								<h4 class="m-0">
+									{% if page.price == nil %}
+										upon request
+									{% elsif page.price == '0' %}
+										free
+									{% else %}
+										{{ page.price }} (excl. VAT)
+									{% endif %}
+								</h4>
+								<small class="text-muted">
+									{%- if isPaidOwnerPlugin %}
+										<a href="{% link _documentation/buy-a-plugin.md %}">License and purchase details</a>
+									{% else %}
+										Pricing for this item
+									{% endif -%}
+								</small>
+							</div>
+						</div>
+					</div>
+
+                    {% if page.bundle %}
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="section-nav bundle-nav">
+                                <li><a href="#features">Features</a></li>
+                                {%- if isPaidOwnerPlugin %}
+                                <li><a href="#purchase">Purchase</a></li>
+                                {% endif %}
+                                <li><a href="#screenshots">Screenshots</a></li>
+                                <li><a href="#installation">Installation</a></li>
+                                <li><a href="#updates">Updates</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h4 class="card-title text-center">Offered by</h4>
+                            <div class="mb-4">
+                                <img src="{{ developer.image }}" alt="Logo - {{ developer.name }}" class="avatar avatar-xxl">
+                            </div>
+                            <h3 class="mb-3">{{ developer.name }}</h3>
+                            <p class="mb-4">
+                                {{ developer.description }}
+                            </p>
+                            {% if developer.homepage or developer.email %}
+                            <div class="mb-4">
+                                If you have any question,
+                                {% if developer.homepage %}
+                                visit the <a href="{{ developer.homepage }}" title="Homepage" target="_blank">developers homepage</a>
+                                {% endif %}
+                                {% if developer.homepage and developer.email %}
+                                or
+                                {% endif %}
+                                {% if developer.email %}
+                                use the <a href="mailto:{{ developer.email }}" title="Email">email for direct contact</a>
+                                {% endif %}
+                                .
+                            </div>
+                            {% endif %}
+                            <ul class="social-links list-inline mb-0 mt-2">
+                                {% if developer.homepage %}
+                                <li class="list-inline-item">
+                                    <a href="{{ developer.homepage }}" title="Homepage" target="_blank"><i class="fa fa-home"></i></a>
+                                </li>
+                                {% endif %}
+                                {% if developer.email %}
+                                <li class="list-inline-item">
+                                    <a href="mailto:{{ developer.email }}" title="Email"><i class="fa fa-envelope"></i></a>
+                                </li>
+                                {% endif %}
+                                {% if developer.github %}
+                                <li class="list-inline-item">
+                                    <a href="{{ developer.github }}" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                </li>
+                                {% endif %}
+                                {% if developer.gitlab %}
+                                <li class="list-inline-item">
+                                    <a href="{{ developer.gitlab }}" title="Gitlab" target="_blank"><i class="fab fa-gitlab"></i></a>
+                                </li>
+                                {% endif %}
+                                {% if developer.twitter %}
+                                <li class="list-inline-item">
+                                    <a href="{{ developer.twitter }}" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if page.demo %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="mb-3 text-center alert alert-info">
+                                Try it
+                            </h3>
+                            <p class="mb-4">
+                                You can test this plugin in our dedicated <a href="https://demo-plugins.kimai.org">plugin demo</a>:
+                            </p>
+                            <ul>
+                                <li>Username: <strong>susan_super</strong></li>
+                                <li>Password: <strong>kitten</strong></li>
+                            </ul>
+                            <p class="mb-4">
+                                Find more testing accounts <a href="{% link _pages/demo.md %}">here</a>.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if page.screenshot %}
+                    <div class="card p-3">
+                        <div id="carousel-controls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                {% for screenshot in page.screenshot %}
+                                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                                    <a href="{{ screenshot }}" target="_blank"><img class="d-block w-100" alt="" src="{{ screenshot }}" data-holder-rendered="true"></a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carousel-controls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center px-2">
+                            <div>
+                                <div>Screenshot{% if page.screenshot.size > 1 %}s{% endif %}</div>
+                                <small class="d-block text-muted">Click to enlarge</small>
+                            </div>
+                            {% if page.screenshot.size > 1 %}
+                            <div class="ml-auto text-muted">
+                                {% for screenshot in page.screenshot %}
+                                <a href="javascript:void(0)" data-target="#carousel-controls" data-slide-to="{{ forloop.index0 }}" class="icon">[{{ forloop.index }}]</a>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex align-items-center px-2">
+						{% if page.image %}
+						<div class="avatar avatar-md mr-3" style="background-image: url({{ page.image }})"></div>
+						{% else %}
+						<i class="{{ icon }} fa-2x mr-3"></i>
+						{% endif %}
+						<div>
+							<div>{{ page.intro }}</div>
+							<small class="d-block text-muted">
+								Last update: {{ page.date | date_to_string }}
+							</small>
+						</div>
+					</div>
+					<div class="card-options">
+						{% if page.email %}
+						<a href="mailto:{{ page.email }}" class="btn btn-outline-primary">
+							<i class="fas fa-at"></i>
+							<span class="text-nowrap">Contact</span>
+						</a>
+						{% endif %}
+						{% if page.github %}
+							<a href="{{ page.github }}" class="btn btn-outline-primary">
+								<i class="fab fa-github"></i>
+								<span class="text-nowrap">GitHub</span>
+							</a>
+						{% endif %}
+						{% if page.gitlab %}
+							<a href="{{ page.gitlab }}" class="btn btn-outline-primary">
+								<i class="fab fa-gitlab"></i>
+								<span class="text-nowrap">GitLab</span>
+							</a>
+						{% endif %}
+						{% if page.download %}
+							<a href="{{ page.download }}" class="btn btn-outline-primary ml-2">
+								<i class="fas fa-download"></i>
+								<span class="text-nowrap">Download</span>
+							</a>
+						{% endif %}
+						{% if page.gumroad %}
+						<a href="https://gum.co/{{ page.gumroad }}" class="btn btn-success ml-2" target="_blank">
+							<i class="fas fa-shopping-cart"></i>
+							<span class="text-nowrap">Buy now</span>
+						</a>
+						{% endif %}
+					</div>
+				</div>
+				<div class="card-body">
+
+                    {% if page.toc %}
+                    {% include toc.html html=page.content class="section-nav" h_min=2 h_max=3 %}
+                    {% endif %}
+
+                    {{ content }}
+				</div>
+			</div>
+            {%- if isPaidOwnerPlugin %}
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center px-2">
+                            <h3 id="purchase" class="card-title">Purchase</h3>
+                        </div>
+                        <div class="card-options">
+                            {% if page.gumroad %}
+                            <a href="https://gum.co/{{ page.gumroad }}" class="btn btn-success ml-2" target="_blank">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="text-nowrap">Buy now</span>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        {% include store-gumroad-and-support.html %}
+                    </div>
+                </div>
+            {% endif %}
+            {% if page.screenshots %}
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center px-2">
+                        <h3 id="screenshots" class="card-title">Screenshots</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% include slider.html slides=page.screenshots %}
+                </div>
+            </div>
+            {% endif %}
+            {% if page.bundle %}
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center px-2">
+                                <h3 id="installation" class="card-title">Installation</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {% if page.bundle.versions %}
+                            <h3>Compatibility</h3>
+
+                            <p>
+                                Plugins should always be compatible with higher Kimai versions, the following list contains the plugin version and the required minimum Kimai version.
+                            </p>
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Bundle version
+                                    </th>
+                                    <th>
+                                        Minimum Kimai version
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for version in page.bundle.versions %}
+                                    <tr>
+                                        <td>{{ version[0] }}</td>
+                                        <td>{{ version[1] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+
+                            {% include store-plugin-installation.html clone=page.bundle.clone plugin=page.bundle.name command=page.bundle.command assets=page.bundle.assets %}
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center px-2">
+                                <h3 id="updates" class="card-title">Updates</h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            {% include store-plugin-update.html plugin=page.bundle.name command=page.bundle.command assets=page.bundle.assets %}
+                        </div>
+                    </div>
+            {% endif %}
+		</div>
+	</div>
+
+    <div class="row row-cards">
+		<div class="col-lg-3"></div>
+		<div class="col-lg-9">
+			<h4>All items by {{ developer.name }}</h4>
+
+			{% assign products = site.store | where: "developer", page.developer | where_exp:"product", "product.featured != nil" | sort: 'name' %}
+			{% include store-list.html products=products %}
+
+			{% assign products = site.store | where: "developer", page.developer | where_exp:"product", "product.featured == nil" | sort: 'name' %}
+			{% include store-list.html products=products %}
+
+			{% include store-list.html products=items %}
+		</div>
+	</div>
+</div>

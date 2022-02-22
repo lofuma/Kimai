@@ -1,0 +1,10 @@
+- title: Administration
+  pages: [installation, updates]
+- title: Using manual
+  pages: [administration, timesheet, invoices, rates, export]
+- title: Configuration
+  pages: [authenticator, email]
+- title: Developer
+  pages: [developer, translations, invoice-templates, extensions, api]
+- title: Other
+  pages: [apps, kimai-mobile, team]

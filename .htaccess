@@ -1,0 +1,13 @@
+---
+layout: none
+sitemap: false
+---
+{%- for collection in site.collections -%}
+{%- for page in site[collection.label] -%}
+{%- if page.redirect_from != nil -%}
+{%- for redirect in page.redirect_from -%}
+rewrite ^{{ redirect }}$ {{ page.url }} permanent;
+{% endfor %}
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}

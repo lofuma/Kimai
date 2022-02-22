@@ -1,0 +1,84 @@
+kevinpapst:
+    name: Kevin Papst
+    description: Freelancer, PHP professional and Kimai maintainer since 2007
+    image: https://avatars1.githubusercontent.com/u/533162?s=460&v=4
+    homepage: https://www.kevinpapst.de
+    github: https://github.com/kevinpapst
+    twitter: http://twitter.com/keleo
+    email: kevin@kevinpapst.de
+
+keleo:
+    name: Keleo
+    description: Software development company founded by Kevin Papst
+    image: https://avatars2.githubusercontent.com/u/7362599?s=200&v=4
+    homepage: https://www.keleo.de
+    github: https://github.com/keleo
+    twitter: http://twitter.com/keleo
+    email: info@keleo.de
+
+infeeeee:
+    name: Peter Gyetvai
+    description: Freelancer, Revit specialist, also do some frontend
+    image: https://avatars3.githubusercontent.com/u/1271737
+    github: https://github.com/infeeeee
+
+derpilzcc:
+    name: "fungus.at: der.pilz"
+    description: Part time developer, code fanboy, backend-freak, symfony-lover
+    image: https://pbs.twimg.com/profile_images/311187047/fungi-foto_400x400.jpg
+    homepage: http://der.pilz.cc
+    github: https://github.com/fungus75
+    twitter: https://twitter.com/fungus75
+
+mr-software:
+    name: "MR Software GmbH"
+    description: Software + App development company from Germany
+    image: https://mrsoft.gmbh/assets/img/logo.png
+    homepage: https://mrsoft.gmbh/
+    email: info@mrsoft.gmbh
+
+maximiliangross:
+    name: Maximilian Gross
+    description: Software Developer and Freelancer
+    image: https://avatars3.githubusercontent.com/u/3718449
+    homepage: https://www.maximiliangross.de
+    github: https://github.com/mxgross
+
+umws:
+    name: UNIMEDIA webservice GmbH
+    description: Individual cloud and app solutions
+    image: https://pool.umws.de/public/UM_logo_kimai.png
+    homepage: https://umws.de
+
+alexandreptj:
+    name: Alexandre Petitjean
+    description: Software Developer and Freelancer
+    image: https://avatars1.githubusercontent.com/u/3862081?s=96&v=4
+    github: https://github.com/AlexandrePTJ
+
+tobybatch:
+    name: Toby Batch
+    description: Neontribe is a software development company. We're agile and user-centered in our design and development work, producing websites and apps.
+    image: https://avatars2.githubusercontent.com/u/814085?s=200&v=4
+    homepage: https://www.neontribe.co.uk
+    github: https://github.com/neontribe
+
+vettersolutions:
+    name: VetterSolutions
+    description: Fabian Vetter - Full Stack Developer, Freelancer
+    image: https://avatars0.githubusercontent.com/u/11617342
+    homepage: https://vettersolutions.de
+    github: https://github.com/dexterity42
+
+cloudrizon:
+    name: Cloudrizon GmbH
+    description: IT company from Germany
+    image: /images/marketplace/cloudrizon-logo.jpeg
+    homepage: https://cloudrizon.de/
+
+district09:
+    name: District09
+    description: ICT partner of the city of Ghent (Belgium)
+    image: https://avatars.githubusercontent.com/u/13314408
+    homepage: https://district09.gent
+    github: https://github.com/digipolisgent
